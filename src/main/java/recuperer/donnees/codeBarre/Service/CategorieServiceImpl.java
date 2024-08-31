@@ -69,6 +69,15 @@ public class CategorieServiceImpl implements CategorieService {
     }
 
     @Override
+    public Categorie getCategorieByNom(String nomCategorie) {
+        if(nomCategorie.isEmpty()){
+            return null;
+        }
+        return categorieRepository.findCategorieByNomCategorie(nomCategorie);
+    
+    }
+
+    @Override
     public void DeleteCategorie(Integer idCategorie) {
 
         categorieRepository.deleteById(idCategorie);

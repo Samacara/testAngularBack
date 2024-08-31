@@ -1,5 +1,4 @@
 package recuperer.donnees.codeBarre.Controller;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,23 +30,33 @@ public class ProduitController implements ProduitApi {
 
 
     @Override
-    public ResponseEntity<Object> GetOneProduit(Integer idProduit) {
+    public ResponseEntity<Object> getOneProduit(Integer idProduit) {
         return ResponseEntity.ok().body(produitService.getProduitById(idProduit));
     }
 
     @Override
-    public ResponseEntity<Object> getProduitByCodeProduit(String codeProduit) {
-        return ResponseEntity.ok().body(produitService.getProduitByCodeBarre(codeProduit));
+    public ResponseEntity<Object> getProduitByDesignation(String designation) {
+        return ResponseEntity.ok().body(produitService.getProduitByDesignation(designation));
     }
 
     @Override
-    public ResponseEntity<Object> GetAllProduit() {
+    public ResponseEntity<Object> getAllProduit() {
         return ResponseEntity.ok().body(produitService.getAllProduit());
     }
 
     @Override
-    public void DeleteProduit(Integer idProduit) {
+    public void deleteProduit(Integer idProduit) {
         produitService.DeleteProduit(idProduit);
     }
+
+    @Override
+    public ResponseEntity<Object> getProduitByIdCategorie(Integer categorieId) {
+        return ResponseEntity.ok().body(produitService.getProduitByCategorie(categorieId));
+    }
+
+//    @Override
+//    public ResponseEntity<Object> getCategorieAllProduit(String nomCategorie) {
+//        return ResponseEntity.ok().body(produitService.getCategorieAllProduit(nomCategorie));
+//    }
 }
 

@@ -35,12 +35,17 @@ public class ProduitServiceImpl implements ProduitService {
     }
 
     @Override
-    public Produit getProduitByCodeBarre(String codeProduit) {
-        Produit produit = produitRepository.findByCodeProduit(codeProduit);
-        if (produit == null) {
-            throw new RuntimeException("Produit non trouvé pour le codeProduit : " + codeProduit);
+    public List <Produit> getProduitByDesignation(String designation) {
+        if (designation == null) {
+            throw new RuntimeException("Produit non trouvé pour le codeProduit : " + designation);
         }
-        return produit;
+        List<Produit> list = new ArrayList<>();
+        for (Produit p : getAllProduit()){
+            if (p.getDesignation().equals(designation)){
+                list.add(p);
+            }
+        }
+        return produitRepository.findByDesignationContains(designation);
     }
 
     @Override
@@ -83,6 +88,38 @@ public class ProduitServiceImpl implements ProduitService {
 
         }
 
+        return list;
+    }
+
+//    @Override
+//    public List<Produit> getCategorieAllProduit(String categorieId) {
+//        if( categorieId == null){
+//            return null;
+//        }
+//
+//        Categorie ca = categorieService.getCategorieByNom(categorieId);
+//        List<Produit> list = new ArrayList<>();
+//        for (Produit p : getAllProduit()){
+//            if (p.getCategorie().getId().equals(ca.getId())){
+//                list.add(p);
+//            }
+//        }
+//        return list;
+//    }
+
+    @Override
+    public List<Produit> getProduitByCategorie(Integer idCat) {
+        if( idCat == null){
+            return null;
+        }
+
+        Categorie ca = categorieService.getCategorieById(idCat);
+        List<Produit> list = new ArrayList<>();
+        for (Produit p : getAllProduit()){
+            if (p.getCategorie().getId().equals(ca.getId())){
+                list.add(p);
+            }
+        }
         return list;
     }
 

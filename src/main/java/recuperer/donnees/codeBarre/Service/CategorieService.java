@@ -15,5 +15,8 @@ public interface CategorieService {
 
     public List<Categorie> getAllCategorie();
 
+
+    public Categorie getCategorieByNom(String nomCategorie);
+
     public void DeleteCategorie(Integer idCategorie);
 }

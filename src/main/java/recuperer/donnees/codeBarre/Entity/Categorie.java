@@ -1,6 +1,7 @@
 package recuperer.donnees.codeBarre.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
@@ -21,6 +22,7 @@ public class Categorie extends BaseEntity {
     private String nomCategorie;
 
     @OneToMany(mappedBy = "categorie", cascade = CascadeType.ALL)
+    @JsonIgnore
     List<Produit> produits;
 
 }

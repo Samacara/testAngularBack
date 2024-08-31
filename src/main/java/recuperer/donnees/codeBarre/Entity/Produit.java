@@ -31,7 +31,6 @@ public class Produit extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "idCategorie")
-    @JsonIgnore
     private Categorie categorie;
 
 
